@@ -42,6 +42,12 @@ int main(int argc, char **argv)
     {
       ROS_ERROR_STREAM("Data validation error!");
     }
+    else
+		{
+			// When the real range exceeds 12.0, but there is an object further, in some cases the sensor returns value > 12.0.
+      // Set the range to max if that happens.
+			TFmini_range_.range = 12.0;
+		}
   }
 
   tfmini_obj->closePort();
